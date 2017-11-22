@@ -26,9 +26,6 @@ enable_df_pub_sub = {{ dragonflow_pub_sub_driver | default('', True) | length > 
 # Drivers to use for the Dragonflow pub/sub (string value)
 pub_sub_driver = {{ dragonflow_pub_sub_driver | default('', True) }}
 
-# Drivers to use for the Dragonflow pub/sub (string value)
-pub_sub_multiproc_driver = {{ dragonflow_pub_sub_multiproc_driver }}
-
 # Enable notifier for the Dragonflow port status (boolean value)
 enable_port_status_notifier = {{ dragonflow_port_status_notifier | default('', True) | length > 0 }}
 
@@ -38,16 +35,8 @@ port_status_notifier = {{ dragonflow_port_status_notifier | default('', True) }}
 # Neutron Server Publishers bind address (string value)
 publisher_bind_address = {{ dragonflow_publisher_bind_address }}
 
-# Use inter-process publish/subscribe.
-pub_sub_use_multiproc = {{ dragonflow_pub_sub_multiproc_enabled }}
-
-{%if dragonflow_pub_sub_multiproc_enabled | bool %}
-publisher_multiproc_socket = /var/run/dragonflow/dragonflow-publisher-socket
-{% endif %}
-
 # Have each controller get only the part of the topology relevant to it.
-enable_selective_topology_distribution = True
-
+enable_selective_topology_distribution = False
 
 [df_dnat_app]
 ex_peer_patch_port = {{ dragonflow_ex_peer_patch_port }}

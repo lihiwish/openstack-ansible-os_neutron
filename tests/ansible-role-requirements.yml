@@ -52,8 +52,11 @@
   version: master
 - name: etcd
   scm: git
-  src: https://github.com/logan2211/ansible-etcd
-  version: master
+  src: https://github.com/lihiwish/ansible-etcd
+  version: grpc-proxy
+- name: redis-role
+  scm: git
+  src: https://github.com/idealista/redis-role
 - name: os_previous_neutron
   src: https://git.openstack.org/openstack/openstack-ansible-os_neutron
   scm: git

@@ -20,6 +20,15 @@ neutron_plugin_base:
 neutron_external_network_bridge: br-ex
 neutron_local_ip: 10.1.0.3
 
+df_db: "redis_nb_db_driver"
+df_pubsub: "redis_db_pubsub_driver"
+
+# Dragonflow requires etcd3, while xenial repo contains only etcd2.
+# Use PPA in order to install etcd3 on xenial (Used in https://github.com/Logan2211/ansible-etcd)
+etcd_apt_repo:
+  - repo: "ppa:lihiwish/etcd3-xenial"
+    state: present
+
 tempest_run: yes
 
 tempest_plugins:

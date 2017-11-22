@@ -56,22 +56,24 @@
   tags:
     - dragonflow-config
 
-- name: Setup Dragonflow pub/sub IPC socket folder
-  file:
-    path: "/var/run/dragonflow"
-    state: directory
-    owner: "{{ neutron_system_user_name }}"
-    group: "{{ neutron_system_group_name }}"
-    mode: "0755"
-  when:
-    - dragonflow_pub_sub_multiproc_enabled
-
 - name: Setup Dragonflow integration bridge
   openvswitch_bridge:
     bridge: br-int
     state: present
+    fail_mode: secure
   tags:
     - dragonflow-config
+  when:
+    - (neutron_services['dragonflow-l3-agent']['group'] in group_names) or
+      (neutron_services['dragonflow-controller-agent']['group'] in group_names)
+
+# Configure ovsdb-client to listen on 127.0.0.1:6640 (Dragonflow communicate with ovs via localhost:6640)
+- name: Enable local connections to OVS
+  shell: |
+    ovs-vsctl set-manager ptcp:6640:0.0.0.0
+  tags:
+    - dragonflow-config
+  owner: "root"
   when:
     - (neutron_services['dragonflow-l3-agent']['group'] in group_names) or
       (neutron_services['dragonflow-controller-agent']['group'] in group_names)

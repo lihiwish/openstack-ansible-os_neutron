@@ -31,11 +31,18 @@ infra1
 [etcd:children]
 etcd_all
 
+[redis_all]
+server1
+
+[redis:children]
+redis_all
+
 [service_all:children]
 rabbitmq_all
 galera_all
 memcached_all
 etcd_all
+redis_all
 
 [keystone_all]
 infra1
@@ -79,4 +86,5 @@ dragonflow_pubsub_agent
 dragonflow_l3_agent
 
 [utility_all]
+localhost
 infra1

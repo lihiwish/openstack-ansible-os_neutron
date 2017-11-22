@@ -100,7 +100,7 @@ neutron_optional_vpnaas_pip_packages:
 
 neutron_optional_dragonflow_pip_packages:
   - dragonflow
-  - python-etcd
+  - redis
 
 neutron_optional_opendaylight_pip_packages:
   - networking-odl
@@ -343,10 +343,8 @@ neutron_bgp_router_id: "{{ neutron_local_ip }}"
 ### Dragonflow Plugin Configuration
 ###
 
-dragonflow_nb_db_class: etcd_nb_db_driver
-dragonflow_pub_sub_driver: zmq_pubsub_driver
-dragonflow_pub_sub_multiproc_driver: zmq_pubsub_multiproc_driver
-dragonflow_pub_sub_multiproc_enabled: "{{ (dragonflow_pub_sub_multiproc_driver | default('', True)) | length > 0 }}"
+dragonflow_nb_db_class: "{{ df_db }}"
+dragonflow_pub_sub_driver: "{{ df_pubsub }}"
 
 ###
 ### Services info
