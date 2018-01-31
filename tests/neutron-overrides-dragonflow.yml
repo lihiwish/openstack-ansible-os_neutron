@@ -29,6 +29,9 @@ etcd_apt_repo:
   - repo: "ppa:lihiwish/etcd3-xenial"
     state: present
 
+# Since redis isntalled on lxc containers, disabling transparent hugetable does not affect redis
+disable_transparent_hugepage: false
+
 tempest_run: yes
 
 tempest_plugins:

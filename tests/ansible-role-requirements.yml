@@ -56,7 +56,7 @@
   version: grpc-proxy
 - name: redis-role
   scm: git
-  src: https://github.com/idealista/redis-role
+  src: https://github.com/lihiwish/redis-role
 - name: os_previous_neutron
   src: https://git.openstack.org/openstack/openstack-ansible-os_neutron
   scm: git
