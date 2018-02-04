@@ -51,6 +51,7 @@ dependencies:
            neutron_services['neutron-server']['group']
          ]) | length > 0"
     redis_conf_path: "/etc/redis"
+    redis_mode: cluster
     redis_confs:
       cluster-node-timeout: "2000"
       cluster-enabled: "yes"
