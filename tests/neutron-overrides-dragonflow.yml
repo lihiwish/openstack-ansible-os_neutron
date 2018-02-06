@@ -39,8 +39,8 @@ tempest_plugins:
     repo: https://git.openstack.org/openstack/neutron
     branch: master
   - name: dragonflow
-    repo: https://git.openstack.org/openstack/dragonflow
-    branch: master
+    repo: git://git.openstack.org/openstack/dragonflow
+    branch: refs/changes/99/496299/21
   - name: neutron-plugins
     repo: https://git.openstack.org/openstack/neutron-tempest-plugin
     branch: master
