@@ -42,8 +42,7 @@ dependencies:
   - openstack_openrc
   - role: redis-role
     when:
-      - df_db == "redis_nb_db_driver" # FIXME(lihi) needs to be changed. also add port
-      - "neutron_plugin_type in ['ml2.calico', 'ml2.dragonflow']"
+      - neutron_plugin_type == "ml2.dragonflow"
       - "group_names | intersect([
            neutron_services['calico-dhcp-agent']['group'],
            neutron_services['calico-felix']['group'],
@@ -78,8 +77,7 @@ dependencies:
   - role: etcd
     etcd_install_type: proxy
     when:
-      - df_db == "etcd_nb_db_driver" # FIXME(lihi) needs to be changed
-      - "neutron_plugin_type in ['ml2.calico', 'ml2.dragonflow']"
+      - neutron_plugin_type == "ml2.calico"
       - "group_names | intersect([
            neutron_services['calico-dhcp-agent']['group'],
            neutron_services['calico-felix']['group'],

@@ -32,10 +32,12 @@ infra1
 etcd_all
 
 [redis_all]
+localhost
 server1
+server2
+agents1
+agents2
 
-[redis:children]
-redis_all
 
 [service_all:children]
 rabbitmq_all
