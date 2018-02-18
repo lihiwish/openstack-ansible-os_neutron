@@ -44,10 +44,7 @@ dependencies:
     when:
       - neutron_plugin_type == "ml2.dragonflow"
       - "group_names | intersect([
-           neutron_services['calico-dhcp-agent']['group'],
-           neutron_services['calico-felix']['group'],
-           neutron_services['dragonflow-controller-agent']['group'],
-           neutron_services['neutron-server']['group']
+           neutron_services['redis_all']['group'],
          ]) | length > 0"
     redis_conf_path: "/etc/redis"
     redis_mode: cluster
