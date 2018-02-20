@@ -32,7 +32,6 @@ infra1
 etcd_all
 
 [redis_all]
-localhost
 server1
 server2
 agents1
