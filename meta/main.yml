@@ -47,6 +47,7 @@ dependencies:
     redis_mode: cluster
     redis_cluster_replicas: 0
     redis_version: 4.0.8
+    config_cluster: "{{ inventory_hostname == 'server1' }}"
     redis_confs:
       cluster-node-timeout: "2000"
       cluster-enabled: "yes"
