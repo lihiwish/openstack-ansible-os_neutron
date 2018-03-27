@@ -32,10 +32,7 @@ infra1
 etcd_all
 
 [redis_all]
-server1
-server2
-agents1
-agents2
+localhost
 
 
 [service_all:children]

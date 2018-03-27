@@ -45,3 +45,37 @@
   when:
      - neutron_plugin_type == "ml2.opendaylight"
      - "'opendaylight' in group_names"
+- name: Include redis role
+  include_role:
+    name: redis-role
+  serial: 1
+  when:
+    - neutron_plugin_type == "ml2.dragonflow"
+  with_items: "{{ redis_all }}"
+  when: "hostvars[host_item].inventory_hostname == inventory_hostname"
+  vars:
+    redis_conf_path: "/etc/redis"
+    redis_mode: cluster
+    redis_cluster_replicas: 0
+    redis_version: 4.0.8
+    redis_confs:
+      cluster-node-timeout: "2000"
+      cluster-enabled: "yes"
+      cluster-config-file: node.conf
+      port: "4001"
+      bind: "0.0.0.0"
+      protected-mode: "no"
+      pidfile: "/var/run/redis/redis.pid"
+      loglevel: "notice"
+      logfile: "/var/log/redis/redis.log"
+      databases: "16"
+      rdbcompression: "yes"
+      rdbchecksum: "yes"
+      supervised: "systemd"
+      slave-serve-stale-data: "yes"
+      slave-read-only: "yes"
+      stop-writes-on-bgsave-error: "yes"
+      appendonly: "yes"
+      appendfilename: "appendonly-db.aof"
+      dbfilename: "dump.rdb"
+      daemonize: "yes" # mandatory for cluster node
