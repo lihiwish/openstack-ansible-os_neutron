@@ -48,11 +48,9 @@
 - name: Include redis role
   include_role:
     name: redis-role
-  serial: 1
   when:
     - neutron_plugin_type == "ml2.dragonflow"
-  with_items: "{{ redis_all }}"
-  when: "hostvars[host_item].inventory_hostname == inventory_hostname"
+  with_items: groups.redis_all
   vars:
     redis_conf_path: "/etc/redis"
     redis_mode: cluster
